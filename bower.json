@@ -1,0 +1,24 @@
+{
+  "name": "kaseya",
+  "authors": [
+    "fredtma <tshimanga@gmail.com>"
+  ],
+  "description": "api application to the kaseya webservice",
+  "main": "index.html",
+  "moduleType": [],
+  "keywords": [
+    "api",
+    "polymer",
+    "soap"
+  ],
+  "license": "MIT",
+  "homepage": "www.xpandit.co.za",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

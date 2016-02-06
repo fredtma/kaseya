@@ -1,0 +1,17 @@
+{
+  "name": "kaseya",
+  "version": "0.0.1",
+  "description": "a front end interphaze to the kaseya api",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "api",
+    "polymer",
+    "kaseya",
+    "soap"
+  ],
+  "author": "fredtma",
+  "license": "ISC"
+}
