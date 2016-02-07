@@ -1,0 +1,15 @@
+{
+  "name": "kaseya-api",
+  "private": "true",
+  "description": "XpandIT api to Kaseya",
+  "devDependencies": {
+    "ionic": "driftyco/ionic-bower#1.2.4",
+    "ionic-platform-web-client": "^0.2.1",
+    "ionic-service-core": "^0.1.10"
+  },
+  "dependencies": {
+    "async": "~1.5.2",
+    "angular-soap": "^2.1.1",
+    "angular-resource": "^1.5.0"
+  }
+}

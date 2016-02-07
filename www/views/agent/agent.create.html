@@ -1,0 +1,24 @@
+<ion-view title="Agent Create">
+    <ion-content overflow-scroll="true" padding="true" class="has-header has-footer">
+        <h2>Agent</h2>
+        <div></div>
+        <h5>Agent creation</h5>
+        <form class="list" action="call.create">
+            <ion-toggle toggle-class="toggle-positive" name="status">Status</ion-toggle>
+            <label class="item item-select" name="organisation">
+                <span class="input-label">Organisation</span>
+                <select>
+                    <option>XpandIT</option>
+                    <option>Road Cover</option>
+                    <option>SABJ</option>
+                    <option>Questek</option>
+                </select>
+            </label>
+            <label class="item item-input" name="agent">
+                <span class="input-label">Agent Name</span>
+                <input type="text" placeholder="Name of the agent">
+            </label>
+            <button class="button button-dark button-block  ion-checkmark button-full">Save</button>
+        </form>
+    </ion-content>
+</ion-view>
