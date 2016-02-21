@@ -1,18 +1,18 @@
 <ion-view title="Login">
     <ion-content overflow-scroll="true" padding="true" class="has-header">
-        <form class="list" action="call.login">
+        <form class="list" ng-submit="call.login()">
             <ion-list>
                 <label class="item item-input">
                     <span class="input-label">Username</span>
-                    <input type="text" placeholder="">
+                    <input type="email" placeholder="Email address" ng-model="item.username" required>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Password</span>
-                    <input type="password" placeholder="">
+                    <input type="password" required placeholder="**********" ng-model="item.password">
                 </label>
             </ion-list>
             <div class="spacer" style="height: 40px;"></div>
-            <button class="button button-dark button-block ion-unlocked button-full"> Log in</button>
+            <button class="button button-dark button-block ion-unlocked button-full" type="submit"> Log in</button>
         </form>
     </ion-content>
 </ion-view>

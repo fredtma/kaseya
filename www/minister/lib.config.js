@@ -10,7 +10,7 @@ configuration.prototype.config=function(){
     var caecus  = {};//hiden configfile
 		var debug   = window.location.hostname==='localhost'? true: false;
     var site    = {
-        api:        window.location.origin,
+        api:        'http://localhost:9999/api/v1/',
         dbName:     'lexar',
         dbDesc:     'Select your camera card',
         dbVersion:  1,
@@ -117,6 +117,19 @@ var sky = {
         console.info('%c'+a[0]+" "+a[len],color);
         if(typeof a[1]!=='string' && a.length>2)console.dir(a[1]);
         else if(typeof a[2]!=='string' && a.length>2)console.dir(a[2]);
+    },
+    jsonp: function(url, callback){
+        var callbackName= 'jsonp_callback_' + Math.round(100000 * Math.random());
+        var script      = document.createElement('script');
+
+        window[callbackName] = function(data) {
+            delete window[callbackName];
+            document.body.removeChild(script);
+            callback(data);
+        };
+
+        script.src = url + (url.indexOf('?') >= 0 ? '&' : '?') + 'callback=' + callbackName;
+        document.body.appendChild(script);
     },
     /**
      * display on the notification board
@@ -302,7 +315,6 @@ var sky = {
         else{return '';}
     }
 };
-
 //============================================================================//STORAGE
 /*
  * used to store to storage to json objects

@@ -12,5 +12,6 @@ angular.module('DEI', [
     'DEI.controllers',
     'DEI.services',
     'DEI.directives',
-    'angularSoap'
+    'angularSoap',
+    'ngResource'
 ]);

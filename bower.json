@@ -1,7 +1,26 @@
 {
-  "name": "kaseya-api",
-  "private": "true",
-  "description": "XpandIT api to Kaseya",
+  "name": "kaseya",
+  "authors": [
+    "fredtma <tshimanga@gmail.com>"
+  ],
+  "description": "api application to the kaseya webservice",
+  "main": "index.html",
+  "moduleType": [],
+  "keywords": [
+    "api",
+    "polymer",
+    "soap"
+  ],
+  "license": "MIT",
+  "homepage": "www.xpandit.co.za",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
   "devDependencies": {
     "ionic": "driftyco/ionic-bower#1.2.4",
     "ionic-platform-web-client": "^0.2.1",

@@ -203,6 +203,13 @@ function fileErrorHandler(e) {
     console.log('Error: ' + msg,e);
 }
 //============================================================================//
+function getip(json){
+    console.log("IP", json);
+    localStorage.set('ip', json);
+    return json;
+}
+
+//============================================================================//
 /*
  * check if the browser supports html5 validation
  * @author fredtma
