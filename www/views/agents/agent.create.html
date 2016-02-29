@@ -1,0 +1,68 @@
+<ion-view title="Agent Create">
+    <ion-content overflow-scroll="true" padding="true" class="has-header has-footer">
+        <h2>Agent</h2>
+        <div></div>
+        <h5>Default setting are normally enought</h5>
+        <h5>Agent creation for <span ng-bind="model.GroupName"></span> </h5>
+        <form class="list" ng-submit="call.create()" name="frmMain" id="frmMain">
+            <fieldset>
+                <legend>Agent Details</legend>
+                <label class="item item-input item-stacked-label" name="PackageName">
+                    <span class="input-label">Agent Name</span>
+                    <input ng-model="item.PackageName" type="text" placeholder="Name of the agent">
+                </label>
+
+                <div class="list list-inset">
+                    <label class="item item-input" name="PackageDescription">
+                        <!--<span class="input-label">Description</span>-->
+                        <textarea ng-model="item.PackageDescription" placeholder="Package Description" ></textarea>
+                    </label>
+                    <label class="item item-input" name="PackageDescription">
+                        <input readonly type="text" placeholder="Command Line Switched" ng-model="item.CommandLineSwitches">
+                    </label>
+                </div>
+                <label class="item item-select" name="organisation">
+                    <span class="input-label">Agent Type</span>
+                    <select ng-model="item.AgentType" ng-options="item.id as item.label for item in model.AgentType"></select>
+                </label>
+            </fieldset>
+
+            <fieldset>
+                <legend>Specify machine ID</legend>
+                <ion-list>
+                    <ion-radio name="curMachine" ng-repeat="item in model.Machine" ng-change="call.setCmd(item.id, 'machine')"
+                    ng-model="model.default.curMachine" ng-value="item.id" ng-checked="model.default.curMachine">
+                        <span ng-bind="item.name"></span></ion-radio>
+                </ion-list>
+            </fieldset>
+
+            <fieldset>
+                <legend>Specify Group</legend>
+                <label class="item item-input item-stacked-label" name="GroupName"
+                       ng-if="model.default.curGroup=='existing' || model.default.curGroup=='new'">
+                    <span class="input-label">Group Name</span>
+                    <input ng-model="item.GroupName" type="text" placeholder="Type Group name here">
+                </label>
+                <ion-list>
+                    <ion-radio name="curGroup" ng-repeat="item in model.Group" ng-change="call.setCmd(item.id,'group')"
+                    ng-model="model.default.curGroup" ng-value="item.id" ng-checked="model.default.curGroup">
+                    <span ng-bind="item.name"></span></ion-radio>
+                </ion-list>
+            </fieldset>
+
+            <fieldset>
+                <legend>Additional</legend>
+                <ion-list>
+                    <ion-checkbox name="curOptions[]" ng-repeat="(key, item) in model.Options" ng-change="call.setCmd(item.id)"
+                    ng-model="model.default.curOptions[key]"
+                    ng-true-value="'{{item.id}}'" ng-false-value="false"
+                    ng-checked="model.default.curOptions.indexOf(item.id)!==-1">
+                    <span ng-bind="item.name"></span></ion-checkbox>
+                </ion-list>
+            </fieldset>
+
+            <ion-toggle toggle-class="toggle-positive" name="status" ng-model="model.DefaultAccount">Default Account (todo)</ion-toggle>
+        </form>
+    </ion-content>
+    <button type="submit" class="button button-icon icon ion-checkmark-circled btn-action" form="frmMain" > </button>
+</ion-view>

@@ -1,0 +1,14 @@
+<ion-view title="Organisation List">
+    <ion-content overflow-scroll="true" padding="true" class="has-header has-footer">
+        <h2>List of Groups</h2>
+        <h5>Use search filter to narrow result.</h5>
+        <h5>Total number of group <span ng-bind="model.total"></span></h5>
+        <ion-list class="not-complex">
+            <ion-item
+                    collection-repeat="item in items|filter:search" item-height="45px"
+                    ng-bind="item"
+                    ui-sref="main.agent.list({'group':item})">
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

@@ -1,17 +1,18 @@
 (function () {
-    'use strick';
+    'use strict';
     angular.module('DEI')
         .config(config);
 
     config.$inject = [
-        "$compileProvider", "$ionicAutoTrackProvider", "$ionicConfigProvider", "$stateProvider", "$urlRouterProvider"
+        "$compileProvider", "$httpProvider", "$ionicAutoTrackProvider", "$ionicConfigProvider", "$stateProvider", "$urlRouterProvider"
     ];
-    function config($compileProvider, $ionicAutoTrackProvider, $ionicConfigProvider, $stateProvider, $urlRouterProvider) {
+    function config($compileProvider, $httpProvider, $ionicAutoTrackProvider, $ionicConfigProvider, $stateProvider, $urlRouterProvider) {
         $ionicConfigProvider.templates.maxPrefetch(10);
         $ionicConfigProvider.views.maxCache(10);
         $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|file|blob|content):|data:image\//);
         $ionicAutoTrackProvider.disableTracking('Tap');
         $ionicAutoTrackProvider.disableTracking('State Change');
+        $httpProvider.interceptors.push("Interceptor");
 
         $stateProvider
         .state('login', {
@@ -42,31 +43,50 @@
                 }
             }
         })
-        .state('main.agent', {url: "/agent", abstract: "true", template: "<ui-view></ui-view>"})
+        .state('main.agent', {url: "/agents", abstract: "true", template: "<ui-view></ui-view>"})
         .state('main.agent.create', {
             url: '/create',
             views:{
                 "content@main":{
-                    templateUrl: 'views/agent/agent.create.html',
+                    templateUrl: 'views/agents/agent.create.html',
                     controller: 'agentCreateCtrl'
                 }
             }
         })
         .state('main.agent.list', {
-            url: '/list',
+            url: '/list/:group',
             views:{
                 "content@main":{
-                    templateUrl: 'views/agent/agent.list.html',
+                    templateUrl: 'views/agents/agent.list.html',
                     controller: 'agentListCtrl'
                 }
             }
         })
-        .state('main.organisation', {url: "/organisation", abstract: "true", template: "<ui-view></ui-view>"})
+        .state('main.group', {url: "/groups", abstract: "true", template: "<ui-view></ui-view>"})
+        .state('main.group.create', {
+            url: '/create',
+            views:{
+                "content@main":{
+                    templateUrl: 'views/groups/group.create.html',
+                    controller: 'groupCreateCtrl'
+                }
+            }
+        })
+        .state('main.group.list', {
+            url: '/list',
+            views:{
+                "content@main":{
+                    templateUrl: 'views/groups/group.list.html',
+                    controller: 'groupListCtrl'
+                }
+            }
+        })
+        .state('main.organisation', {url: "/organisations", abstract: "true", template: "<ui-view></ui-view>"})
         .state('main.organisation.create', {
             url: '/create',
                 views:{
                     "content@main":{
-                        templateUrl: 'views/organisation/organisation.create.html',
+                        templateUrl: 'views/organisations/organisation.create.html',
                         controller: 'organisationCreateCtrl'
                     }
                 }
@@ -75,7 +95,7 @@
             url: '/list',
             views:{
                 "content@main":{
-                    templateUrl: 'views/organisation/organisation.list.html',
+                    templateUrl: 'views/organisations/organisation.list.html',
                     controller: 'organisationListCtrl'
                 }
             }

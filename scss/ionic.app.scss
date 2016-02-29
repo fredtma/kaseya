@@ -21,7 +21,55 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+.capitalize{
+  text-transform: capitalize;
+}
+.upper{
+  text-transform: uppercase;
+}
 .item{
   cursor: pointer;
 }
-
+.item, .item h1, .item h2, .item h3, .item h4, .item h5, .item h6, .item p, .item-content, .item-content h1, .item-content h2, .item-content h3, .item-content h4, .item-content h5, .item-content h6, .item-content p {
+  white-space: normal;
+}
+.item-stacked-label .input-label, .item-stacked-label .icon{display: block;}
+.icon-img{
+  position: absolute;
+  top: 10px;
+  left: 10%;
+  max-width: 80px;
+  max-height: 80px;
+  width: 100%;
+  height: 100%;
+  font-size: 4em;
+}
+//======================================================================================================================//CUSTOM
+ion-list .item.item-list {border:none;}
+.btn-add {
+  font-size: 4em;
+  color:$balanced;
+  position: absolute;
+  bottom: 1em;
+  right: 0.2em;
+  z-index: 10;
+}
+.btn-action{
+  position: absolute;
+  bottom: 3em;
+  right: 1em;
+  z-index: 10;
+  &:before{
+    font-size: 3em !important;
+  }
+}
+.not-complex .item-complex{
+  padding: 10px
+}
+.agent-head{
+  background: #000;
+  padding: 5px;
+  color: #fff;
+  font-weight: bold;
+  box-shadow: 2px 2px 2px #ccc;
+}

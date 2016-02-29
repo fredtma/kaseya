@@ -1,0 +1,109 @@
+<ion-view title="Organisation Create">
+    <ion-content overflow-scroll="true" padding="true" scroll="true" class="has-header has-footer">
+        <form class="list" id="frmMain" name="frmMain" ng-submit="call.submit()">
+            <ion-list>
+                <fieldset>
+                    <legend>Organisation Information</legend>
+                    <label class="item item-input item-stacked-label" name="orgRef">
+                        <span class="input-label">Ref</span>
+                        <input ng-model="item.orgRef" type="text" placeholder="Organisation Reference">
+                    </label>
+                    <label class="item item-input item-stacked-label" name="orgName">
+                        <span class="input-label">Name</span>
+                        <input ng-model="item.orgName" type="text" placeholder="Organisation name *" required>
+                    </label>
+                </fieldset>
+                <fieldset>
+                    <legend>Display</legend>
+                    <ion-list>
+                        <ion-checkbox ng-model="model.display.demographic">Demographic</ion-checkbox>
+                        <ion-checkbox ng-model="model.display.contact">Contact</ion-checkbox>
+                        <ion-checkbox ng-model="model.display.address">Address</ion-checkbox>
+                    </ion-list>
+                </fieldset>
+
+                <fieldset ng-if="model.display.demographic">
+                    <legend>Demographics</legend>
+                    <label class="item item-input item-select" name="orgType">
+                        <span class="input-label">Type</span>
+                        <select ng-model="item.orgType" ng-options="item.label for item in model.orgType"></select>
+                    </label>
+                    <label class="item item-input item-stacked-label" name="noEmps">
+                        <span class="input-label">No Employee</span>
+                        <input ng-model="item.noEmps" type="number" placeholder="Number of employees">
+                    </label>
+                    <label class="item item-input item-stacked-label" name="annRevenue">
+                        <span class="input-label">Revenue</span>
+                        <input ng-model="item.annRevenue" type="number" placeholder="Annual Revenue">
+                    </label>
+                    <label class="item item-input item-select" name="methodOfContact">
+                        <span class="input-label">Contact</span>
+                        <select ng-model="item.methodOfContact" ng-options="item.label for item in model.methodOfContact"></select>
+                    </label>
+                    <label class="item item-input item-stacked-label" name="website">
+                        <span class="input-label">Website</span>
+                        <input ng-model="item.website" type="url" placeholder="http://www.website.com">
+                    </label>
+                    <label class="item item-input item-select" name="orgParentRef">
+                        <span class="input-label">Parent</span>
+                        <select ng-model="item.orgParentRef" ng-options="item.OrgRef as item.OrgName for item in model.orgParentRef"></select>
+                    </label>
+                    <label class="item item-input item-stacked-label" name="defaultDeptName">
+                        <span class="input-label">Department Name</span>
+                        <input ng-model="item.defaultDeptName" type="text" placeholder="root">
+                    </label>
+                    <label class="item item-input item-stacked-label" name="defaultMgName">
+                        <span class="input-label">Manager</span>
+                        <input ng-model="item.defaultMgName" type="text" placeholder="root">
+                    </label>
+                </fieldset>
+
+                <fieldset ng-if="model.display.contact">
+                    <legend>Contact Information</legend>
+                    <label class="item item-input item-stacked-label" name="primaryEmail">
+                        <span class="input-label">Email</span>
+                        <input ng-model="item.primaryEmail" type="email" placeholder="Primary Email *" required>
+                    </label>
+                    <label class="item item-input item-stacked-label" name="primaryPhone">
+                        <span class="input-label">Phone</span>
+                        <input ng-model="item.primaryPhone" type="text" placeholder="Primary Phone">
+                    </label>
+                    <label class="item item-input item-stacked-label" name="primaryFax">
+                        <span class="input-label">Fax</span>
+                        <input ng-model="item.primaryFax" type="text" placeholder="Primary Fax">
+                    </label>
+                    <label class="item item-input item-stacked-label" name="primaryStaffFK">
+                        <span class="input-label">Staff Contact</span>
+                        <input ng-model="item.primaryStaffFK" type="text" placeholder="Primary Staff FK">
+                    </label>
+                </fieldset>
+
+                <fieldset ng-if="model.display.address">
+                    <legend>Primary Mailing Address</legend>
+                    <label class="item item-input item-stacked-label" name="countryRef">
+                        <span class="input-label">countryRef</span>
+                        <input ng-model="item.countryRef" type="text" placeholder="Country Ref">
+                    </label>
+                    <label class="item item-input item-stacked-label" name="addr1">
+                        <span class="input-label">Address</span>
+                        <input ng-model="item.addr1" type="text" placeholder="Address, street and number">
+                    </label>
+                    <label class="item item-input item-stacked-label" name="city">
+                        <span class="input-label">City</span>
+                        <input ng-model="item.city" type="text" placeholder="City name">
+                    </label>
+                    <label class="item item-input item-stacked-label" name="state">
+                        <span class="input-label">State</span>
+                        <input ng-model="item.state" type="text" placeholder="State/Region/Province">
+                    </label>
+                    <label class="item item-input item-stacked-label" name="postalCode">
+                        <span class="input-label">Postal Code</span>
+                        <input ng-model="item.postalCode" type="text" placeholder="Postal Code">
+                    </label>
+                </fieldset>
+
+            </ion-list>
+        </form>
+    </ion-content>
+    <button type="submit" class="button button-icon icon ion-checkmark-circled btn-action" form="frmMain" > </button>
+</ion-view>

@@ -1,5 +1,5 @@
 (function (){
-    'use strick';
+    'use strict';
     angular.module('mondeEntier', []).provider("googleSheetDB",googleSheetDB);
 
     function googleSheetDB(){

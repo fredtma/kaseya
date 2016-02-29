@@ -1,0 +1,15 @@
+<ion-view title="Organisation List">
+    <ion-content overflow-scroll="true" padding="true" class="has-header has-footer">
+        <h2>List of organisation</h2>
+        <h5>Total number in list <span ng-bind="model.total"></span></h5>
+        <ion-list>
+            <ion-item
+                    ng-repeat="item in items|filter:search"
+                    ui-sref="main.agent.list({'group':item})">
+                <h3 class="capitalize" ng-bind="item.OrgName"></h3>
+                <small ng-bind="item.OrgId"></small>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+    <button class="button button-icon ion-android-add-circle btn-add" ui-sref="main.organisation.create"></button>
+</ion-view>

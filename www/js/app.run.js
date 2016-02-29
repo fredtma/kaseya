@@ -19,13 +19,14 @@
                 "dryRun": dynamis.get('site').debug
             });
             //$ionicAnalytics.setDispatchInterval(60);
+            ionic.keyboard.disable();
 
             ionic.Platform.isFullScreen = true;
             if (ionic.Platform.isWebView() && isset(navigator.splashscreen)) navigator.splashscreen.hide();
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard for form inputs)
-            if (issets(window, 'cordova.plugins.keyboard')) {
-                cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-                cordova.plugins.Keyboard.disableScroll(true);
+            if (issets(window, 'cordova.plugins.keyboard')) { sky.on("Keyboard");
+                cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
+                cordova.plugins.Keyboard.disableScroll(false);
             }
 
             if (window.StatusBar) {
@@ -36,7 +37,7 @@
         //$location.path('/dash');
 
         $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-
+            $rootScope.search = '';
         });
     }
 })();

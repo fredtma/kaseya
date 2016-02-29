@@ -1,5 +1,5 @@
 (function () {
-    'use strick';
+    'use strict';
 		var aWorker;
 		var api   = dynamis.get('api');
 		if(api.Worker){
@@ -348,13 +348,14 @@
                     if($idb.db) return callback.apply($idb, args);
                     else {
                         console.log("Waiting on IDB ready...");
-                        $idb.iRequest.addEventListener('success', success, false);
+
                         //document.addEventListener("IDBReady",success);
-                        function success(e){
+                        var success = function (e){
                           console.log("event", e);
                           result = callback.apply(inner, args);
                           deferred.resolve(result);
                         }
+                        $idb.iRequest.addEventListener('success', success, false);
                     }
                   return promise;
                 }

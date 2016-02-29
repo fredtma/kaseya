@@ -361,11 +361,12 @@ var dynamis={
   },
   key:function(key, _local){
     var val = this.get(key, _local);
-    return {"set":set};
+    var self= this;
+    return {"set":setValue};
 
-    function set(k, value){
+    function setValue(k, value){
       val[k] = value;
-      this.set(key, val, _local);
+      self.set(key, val, _local);
     }
   }
 
@@ -378,7 +379,20 @@ var myLog = dynamis;
 //============================================================================//
 (function(){(  new configuration()).config();  })();//run the configurations
 var _$=function(element){
-    if(typeof element==="string" && typeof angular!=="undefined")return angular.element(document.querySelectorAll(element));
+    if(typeof element==="string" && typeof angular!=="undefined"){
+        var ele = [], key, e;
+        element = document.querySelectorAll(element);
+
+        if(element.length > 1){
+            for(key in element){
+                if(!element.hasOwnProperty(key)) continue;
+                e = element[key];
+                ele.push(angular.element(e));
+            };
+            return ele;
+        }
+        return angular.element(element);
+    }
     else if (typeof angular!=="undefined") return angular.element(element);
     else if (typeof jquery!=="undefined") return $(element);
     else return document.querySelectorAll(element);

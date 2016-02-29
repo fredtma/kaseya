@@ -1,0 +1,23 @@
+<ion-view title="Agent List">
+    <ion-content overflow-scroll="true" padding="true" class="has-header has-footer">
+        <h2>Agent List</h2>
+        <h5>Total number of agents <span ng-bind="model.total"></span></h5>
+
+        <ion-list>
+            <ion-item class="-item-thumbnail-left"
+                      collection-repeat="item in items|filter:search" item-height="250px">
+                <!--<i class="ion-soup-can-outline icon-img"></i>-->
+                <h2 ng-bind="item.PackageName" class="upper agent-head"></h2>
+                <p>
+                    <label class="item item-input item-stacked-label"><strong class="input-label">Agent Type</strong><span class="label" ng-bind="item.AgentType"></span></label>
+                    <label class="item item-input item-stacked-label"><strong class="input-label">Description</strong><span class="label" ng-bind="item.Description"></span></label>
+                    <label class="item item-input item-stacked-label">
+                        <!--<strong class="input-label">URL</strong><span class="label" ng-bind="item.URL"></span>-->
+                        <a class="button icon-left ion-link button-assertive button-full" target="_blank" href="{{item.URL}}">Install</a>
+                    </label>
+                </p>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+    <button class="button button-icon ion-android-add-circle btn-add" ui-sref="main.agent.create"></button>
+</ion-view>
