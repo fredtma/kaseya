@@ -7,10 +7,11 @@ function configuration(){}
 configuration.prototype.config=function(){
     var site,api;
     var dt      = new Date().getTime();
-    var caecus  = {};//hiden configfile
-		var debug   = window.location.hostname==='localhost'? true: false;
+    var local   = window.location.hostname==='localhost'? true: false;
+    var debug   = window.location.hostname==='localhost'? true: false;
+    var apiUrl  = (1)?'http://demo.xpandit.co.za:8000/api/v1/':'http://localhost:9999/api/v1/';
     var site    = {
-        api:        'http://localhost:9999/api/v1/',
+        api:        apiUrl,
         dbName:     'lexar',
         dbDesc:     'Select your camera card',
         dbVersion:  1,

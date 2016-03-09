@@ -13,7 +13,7 @@
                     <label class="item item-input item-stacked-label"><strong class="input-label">Description</strong><span class="label" ng-bind="item.Description"></span></label>
                     <label class="item item-input item-stacked-label">
                         <!--<strong class="input-label">URL</strong><span class="label" ng-bind="item.URL"></span>-->
-                        <a class="button icon-left ion-link button-assertive button-full" target="_blank" href="{{item.URL}}">Install</a>
+                        <button class="button icon-left ion-share button-assertive button-full" ng-click="call.url(item.URL)">Install</button>
                     </label>
                 </p>
             </ion-item>

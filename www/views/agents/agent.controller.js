@@ -87,6 +87,7 @@ function agentListCtrl(myValue, resource, $scope, ScopeInit, $stateParams)
 
     function alpha($scope)
     {
+        $scope.call.url = url;
         Api.get({"group":$stateParams.group},agentList);
         myValue.setValue('group', $stateParams.group);
     }
@@ -95,6 +96,16 @@ function agentListCtrl(myValue, resource, $scope, ScopeInit, $stateParams)
     {
         $scope.items = response.GetPackageURLsResult.Packages.Package;
         $scope.model.total = $scope.items.length;
+    }
+
+    function url(link)
+    {
+        if(issets(window,'plugins.socialsharing.share'))
+        {
+            window.plugins.socialsharing.share("Share Agent installation","Agent installation",null,link);
+        } else {
+            window.open(link,'_blank', 'location=yes');
+        }
     }
 }
 
