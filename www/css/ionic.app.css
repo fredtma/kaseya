@@ -9123,6 +9123,9 @@ ion-list .item.item-list {
   .btn-action:before {
     font-size: 3em !important; }
 
+.btn-add:before, .btn-action:before {
+  text-shadow: 1px 2px 1px #333; }
+
 .not-complex .item-complex {
   padding: 10px; }
 

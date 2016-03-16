@@ -13,5 +13,6 @@ angular.module('DEI', [
     'DEI.services',
     'DEI.directives',
     'angularSoap',
-    'ngResource'
+    'ngResource',
+    'toastr'
 ]);

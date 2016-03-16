@@ -2,13 +2,13 @@
     "use strict";
     angular.module('DEI').factory('Interceptor', Interceptor);
 
-    Interceptor.$inject = ['$q'];
-    function Interceptor($q)
+    Interceptor.$inject = ['$q', '$location', 'toastr'];
+    function Interceptor($q, $location, toastr)
     {
         function request(request)
         {
             var vitae = dynamis.get('vitae');
-            if(vitae.kaseyaSess)
+            if(vitae && vitae.kaseyaSess)
             {
                 request.headers['kaseya-sess']  = vitae.kaseyaSess;
                 request.headers['kaseya-ip']    = vitae.ip;
@@ -23,6 +23,11 @@
 
         function responseError(rejection)
         {
+            if(rejection.status === 401)
+            {
+                toastr.warning("Session expired", "Logout");
+                $location.url('login');
+            }
             return $q.reject(rejection);
         }
 

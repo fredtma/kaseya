@@ -1,8 +1,61 @@
 angular.module('DEI.services', [])
+.factory('help', help)
 .factory('myValue', myValue)
 .factory('resource', resource)
 .factory('Soap', Soap)
 .service('ScopeInit', ScopeInit);
+
+
+help.$inject = ['toastr'];
+function help(toastr)
+{
+    return {
+        catchResponse:catchResponse
+    };
+    /**
+     * catches an error in the response function
+     * @param {response} response
+     * @returns {undefined}
+     */
+    function catchResponse(response)
+    {
+        sky.error("An error has occured in the response", response.devMessage, response);
+        if(response instanceof Error) return;
+
+        var msg="", key;
+        if(response.hasOwnProperty('data')){
+            if(typeof response.data === "string" && response.data.length > 200) {
+                msg += response.statusText+"\n\r";
+                msg += $(response.data).find('.exception_title').text();
+                if(msg.indexOf('TokenMismatchException')!==-1){
+                    msg = "Your session has expired, you will now be logout";
+                    $state.go('logout');
+                }
+            } else if (issets(response, 'data.data')) {
+                var result = response.data;
+                if (typeof result.success === "string") {
+                    msg += result.success + "\n\r";
+                }
+                if (typeof result.message === "string") {
+                    msg += result.message + "\n\r";
+                }
+                if (typeof result.data === "string") {
+                    msg += result.data + "\n\r";
+                }
+            } else {
+                for(key in response.data){
+                    if(typeof response.data[key] === "string")msg += response.data[key]+"<br/>\n\r";
+                    else if(response.data[key] instanceof Array && typeof response.data[key][0] === "string" )msg += response.data[key][0]+"<br/>\n\r";
+                }
+            }
+
+        } else if(response.message) {
+            msg += response.message;
+        }
+        toastr.error(msg);
+    }
+}
+
 
 myValue.$inject = [];
 function myValue()

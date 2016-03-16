@@ -6,6 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/fredtma/kaseya.git"
+  },
   "keywords": [
     "api",
     "polymer",
@@ -15,6 +19,9 @@
   "author": "fredtma",
   "license": "ISC",
   "dependencies": {
+    "angular-jwt": "0.0.9",
+    "angular-material": "^1.0.6",
+    "auth0-angular": "^4.1.0",
     "gulp": "^3.5.6",
     "gulp-angular-filesort": "^1.1.1",
     "gulp-babel": "^6.1.1",
@@ -24,6 +31,7 @@
     "gulp-rename": "^1.2.0",
     "gulp-sass": "^2.0.4",
     "gulp-uglify": "^1.5.1",
+    "toastr": "^2.1.2",
     "yargs": "^3.31.0"
   },
   "devDependencies": {

@@ -28,8 +28,8 @@ function loginCtrl(resource, $scope, $state)
         };
 
         Api.post(params, function(response){
-            var vitae = {'kaseyaSess':response.AuthenticateResult.SessionID, 'ip':$scope.model.location.ip};
-            dynamis.set('vitae', vitae);
+            var vitae   = {'kaseyaSess':response.AuthenticateResult.SessionID, 'ip':$scope.model.location.ip,'username':item.username};
+            userProfile(vitae);
             $state.go('main.dashboard');
         });
         //var action  = "Authenticate";

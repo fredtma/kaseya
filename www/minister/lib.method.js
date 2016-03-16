@@ -758,22 +758,21 @@ function issets(original,uri){
 
   function userProfile(row){
       if(!row){
-          return row = dynamis.get("vitae",true)? dynamis.get("vitae",true).username: (dynamis.get("vitae"))? dynamis.get("vitae").username: false;
+          return row = dynamis.get("vitae",true)? dynamis.get("vitae",true): (dynamis.get("vitae"))? dynamis.get("vitae").username: false;
       }
       sky.info("Registering user", row);
 
       var user = {
           username      : row.username,
-          level         : row.level,
+          level         : row.level||'admin',
           firstname     : row.firstname,
           lastname      : row.lastname,
           names         : row.names? row.names: row.firstname+' '+row.lastname,
           slug          : row.slug,
           avatar        : row.img,
           company       : row.company,
-          signature     : row.signature,
-          attachments   : row.attachments,
-          style         : row.style,
+          kaseyaSess    : row.kaseyaSess,
+          ip            : row.ip,
           licentia      : row.licentia
       };
 
@@ -808,6 +807,14 @@ function issets(original,uri){
       }//when login in run setup of default setting, necessary incase of logoff
       return user;
   }
+
+    function logoff(msg, $rootScope, $state, go){
+        dynamis.clear();
+        dynamis.clear(true);
+        if(window.toastr) toastr.warning(msg || "Your session has expired!", "Warning");
+        if($rootScope) $rootScope.user = {};
+        if($state) $state.go(go);
+    }
 
 //============================================================================//
 //GOOGLE API USER DETAILS                                                     //

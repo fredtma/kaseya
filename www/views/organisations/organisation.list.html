@@ -4,8 +4,7 @@
         <h5>Total number in list <span ng-bind="model.total"></span></h5>
         <ion-list>
             <ion-item
-                    ng-repeat="item in items|filter:search"
-                    ui-sref="main.agent.list({'group':item})">
+                    ng-repeat="item in items|filter:search">
                 <h3 class="capitalize" ng-bind="item.OrgName"></h3>
                 <small ng-bind="item.OrgId"></small>
             </ion-item>
