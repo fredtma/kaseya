@@ -4,7 +4,7 @@ platforms/
 plugins/
 www/lib/
 .idea/
-
+kaseya.keystore
 # Logs
 logs
 *.log

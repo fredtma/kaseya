@@ -1,8 +1,8 @@
 "use strict";
 angular.module('DEI').controller('loginCtrl',loginCtrl);
 
-loginCtrl.$inject = ['resource','$scope', '$state'];
-function loginCtrl(resource, $scope, $state)
+loginCtrl.$inject = ['resource','$scope', '$state', 'toastr'];
+function loginCtrl(resource, $scope, $state, toastr)
 {
     $scope.item         = {};
     $scope.call         = {};
@@ -27,11 +27,19 @@ function loginCtrl(resource, $scope, $state)
             "HashingAlgorithm": "SHA-256"
         };
 
-        Api.post(params, function(response){
+        Api.post(params, success, error);
+
+        function success(response)
+        {
             var vitae   = {'kaseyaSess':response.AuthenticateResult.SessionID, 'ip':$scope.model.location.ip,'username':item.username};
             userProfile(vitae);
             $state.go('main.dashboard');
-        });
+        }
+
+        function error(response)
+        {
+            toastr.error(response.devMessage);
+        }
         //var action  = "Authenticate";
         //Soap.call(action,params).then(function(response){sky.on("SOAP", response);});//ajax soap no longer relevant
     }

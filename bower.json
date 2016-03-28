@@ -29,6 +29,8 @@
   "dependencies": {
     "async": "~1.5.2",
     "angular-soap": "^2.1.1",
-    "angular-resource": "^1.5.0"
+    "angular-resource": "^1.5.0",
+    "angular-toastr": "^1.7.0",
+    "toastr": "^2.1.2"
   }
 }

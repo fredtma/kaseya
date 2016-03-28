@@ -2,8 +2,8 @@
     "use strict";
     angular.module('DEI').factory('Interceptor', Interceptor);
 
-    Interceptor.$inject = ['$q', '$location', 'toastr'];
-    function Interceptor($q, $location, toastr)
+    Interceptor.$inject = ['$q', '$location', '$injector'];
+    function Interceptor($q, $location, $injector)
     {
         function request(request)
         {
@@ -23,8 +23,11 @@
 
         function responseError(rejection)
         {
+            sky.error("Interpretor", rejection);
             if(rejection.status === 401)
             {
+                sky.info("Session expired");
+                var toastr = $injector.get('toastr');
                 toastr.warning("Session expired", "Logout");
                 $location.url('login');
             }

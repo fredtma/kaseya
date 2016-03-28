@@ -779,12 +779,14 @@ function issets(original,uri){
 	  if(Ionic && Ionic.io){
 		  var person;
 		  Ionic.io();
-		  Ionic.User.load(dynamis.get('ionic_io_user_a7cc5f82',true)).then(function(loadedUser){
+		  Ionic.User.load(dynamis.get('ionic_io_user_d1df4d9f',true)).then(function(loadedUser){
 			  Ionic.User.current(loadedUser);
 			  person = Ionic.User.current();
+              sky.on("Current user", person);
 
 		  }, function(){
 			  person = Ionic.User.current();
+              sky.on("New user", person, user);
 			  if(!user.id){
 				  user.id = Ionic.User.anonymousId();
 			  }

@@ -5,7 +5,13 @@
     run.$inject = ["$ionicPlatform", "$ionicAnalytics", "$rootScope", "$state"];
     function run($ionicPlatform, $ionicAnalytics, $rootScope, $state) {
 
-        $ionicPlatform.ready(function () {
+        $ionicPlatform.ready(ready);
+        //$location.path('/dash');
+
+        $rootScope.$on('$stateChangeStart', stateChangeStart);
+
+        function ready()
+        {
             //Save user
             Ionic.io();
             var user = Ionic.User.current();
@@ -19,12 +25,14 @@
             $ionicAnalytics.register({
                 "dryRun": dynamis.get('site').debug
             });
+            ionic.keyboard.disable();
+
             if(!debug) {
                 $ionicAnalytics.setDispatchInterval(60);
                 //ionic.keyboard.disable();
             }
 
-            ionic.Platform.isFullScreen = true;
+            ionic.Platform.isFullScreen = false;
             if (ionic.Platform.isWebView() && isset(navigator.splashscreen)) navigator.splashscreen.hide();
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard for form inputs)
             if (issets(window, 'cordova.plugins.keyboard')) { sky.on("Keyboard");
@@ -36,20 +44,18 @@
                 // org.apache.cordova.statusbar required
                 StatusBar.styleDefault();
             }
-        });
-        //$location.path('/dash');
+        }
 
-        $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+        function stateChangeStart(event, toState, toParams, fromState, fromParams)
+        {
+            var scp = _$('ion-footer-bar').scope();
+            if(scp) scp.search = '';
+
             let user = userProfile();
             if(!user && toState.name!=="login" && toState.name!=="logout" && toState.name!=="reset"){
                 event.preventDefault();
                 logoff("You are not currently authenticated", $rootScope, $state, 'login');
             }
-        });
-
-        $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-            var scp = _$('ion-footer-bar').scope();
-            if(scp) scp.search = '';
-        });
+        }
     }
 })();
